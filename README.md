@@ -8,4 +8,4 @@ $make
 
 To run the input ex1 and heuristic 1
 
-$./a-star ex1 1
+$./a-star tests/ex1 1
