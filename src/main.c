@@ -237,28 +237,28 @@ Vertex *cpyVertex(Vertex *vertex, int x, int y){
 void generateChilds(Vertex *vertex){
     topo = topo->next;
     Vertex *newvertex;
-    // Movimentar o 0 para cima
+    // Move the 0 up
     if((vertex->lastmov != S)&&(vertex->mvposy > 0)){
         newvertex = cpyVertex(vertex, 0, -1);
         newvertex->lastmov = N;
         if(vertexExist(newvertex) != 1)
             insertVertex(newvertex);
     }
-    // Movimentar o 0 para baixo
+    // Move the 0 down
     if((vertex->lastmov != N)&&(vertex->mvposy < 3)){
         newvertex = cpyVertex(vertex, 0, 1);
         newvertex->lastmov = S;
         if(vertexExist(newvertex) != 1)
             insertVertex(newvertex);
     }
-     // Movimentar o 0 para direita
+     // Move the 0 to right
     if((vertex->lastmov != O)&&(vertex->mvposx < 3)){
         newvertex = cpyVertex(vertex, 1, 0);
         newvertex->lastmov = L;
         if(vertexExist(newvertex) != 1)
             insertVertex(newvertex);
     }
-     // Movimentar o 0 para esquerda
+     // Move the 0 to left
     if((vertex->lastmov != L)&&(vertex->mvposx > 0)){
         newvertex = cpyVertex(vertex, -1, 0);
         newvertex->lastmov = O;
@@ -277,18 +277,22 @@ int main( int argc, char *argv[] )
     initialize();
     if ( argc != 3 )
     {
-        printf( "\nusage: %s filename 0", argv[0] );
+        printf( "usage: %s <filename> <heuristic_num 0-5>\n", argv[0] );
     }
     else
     {
-        printf("Executando heurística h(%s) em %s",argv[2],argv[1]);
         h = atoi(argv[2]);
+	if(h < 1 || h > 6){
+		printf( "Please choose heuristic 1 to 5\n");
+		return 0;	
+	}
+ 	printf("Running heuristic h(%s) in %s",argv[2],argv[1]);
         Vertex *vertex = importaArq(argv[1]);
         insertVertex(vertex);
         //printf("vertex h %d",vertex->h);
         Astar();
-        printf("\n\n%d Movimentos",imprimeCaminho(topo->vertex));
-        printf("\n%d Vértices gerados\n",ctvert);
+        printf("\n\n%d Moves",imprimeCaminho(topo->vertex));
+        printf("\n%d Vertex(es) Generated\n",ctvert);
     }
     return 0;
 }

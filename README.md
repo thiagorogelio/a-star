@@ -1,21 +1,11 @@
-A* implementado por Thiago Rogelio Ramos
-Dicas terminal:
-para compilar o programa basta executar o comando:
+A* by Thiago Rogelio Ramos
 
-$gcc -o main.c main
+Make sure that you have build-essential or gcc and make installed
 
-para executar o programa no exemplo 1 e heurística 0:
+To compile it:
 
-$./main ex1 0
+$make
 
-para analizar o tempo de execução:
+To run the input ex1 and heuristic 1
 
-$time ./main ex1 0
-
-para criar um arquivo com a saída:
-
-$time ./main ex1 0 >> arquivo
-
-para visualizar o arquivo
-$gedit arquivo
-
+$./a-star ex1 1
